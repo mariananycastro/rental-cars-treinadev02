@@ -1,0 +1,10 @@
+<h3> Filiais </h3>
+
+<% if @subsidiaries.empty? %>
+    <p> Nao tem filial cadastrada </p>
+<% end %>
+
+<% @subsidiaries.each do |subsidiary| %>
+    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
+    # ao inves do path como é um show -- subsidiary (que é um objeto)
+<% end %>
