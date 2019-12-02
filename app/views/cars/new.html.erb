@@ -1,0 +1,16 @@
+<h1> Cadastar Novo Carro </h1>
+
+
+<p> Formulario 1</p>
+<%= form_with(model: @car, class: 'nifty_form') do |f| %> 
+    <%= f.label :name, 'Nome:'%>
+    <%= f.text_field :name %>
+    <%= f.submit 'Enviar' %>
+<% end %>
+
+<p> Formulario 2</p>
+<%= form_with(url: "/cars", method: 'post') do %> 
+    <%= label_tag(:name, "Nome: ") %>
+    <%= text_field_tag(:name) %>
+    <%= submit_tag('Enviar') %>
+<% end %>

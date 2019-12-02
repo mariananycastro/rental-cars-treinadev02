@@ -1,0 +1,11 @@
+<h1> Carros </h1>
+
+<p><%= link_to 'Cadastrar Novo Carro', new_car_path %></p>
+
+<% if @cars.empty? %>
+    <p> Nenhum carro cadastrado <p>
+<% end %>
+
+<% @cars.each do |car| %>
+<p>Nome: <%= car.name %> <p>
+<% end %>

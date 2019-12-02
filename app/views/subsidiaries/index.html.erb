@@ -1,10 +1,12 @@
 <h3> Filiais </h3>
 
+<p><%= link_to "Cadastrar Nova Filial", new_subsidiary_path %><p>
+
 <% if @subsidiaries.empty? %>
     <p> Nao tem filial cadastrada </p>
 <% end %>
 
 <% @subsidiaries.each do |subsidiary| %>
-    <%= link_to subsidiary.name, subsidiary_path(subsidiary) %>
-    # ao inves do path como é um show -- subsidiary (que é um objeto)
+    <p><%= link_to subsidiary.name, subsidiary_path(subsidiary) %></p>
+    <!-- ao inves do path como é um show -- subsidiary (que é um objeto) -->
 <% end %>
