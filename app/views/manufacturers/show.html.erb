@@ -1,3 +1,7 @@
+<!-- <%= notice %> aparece soh neste view, nao aparece na view edit --> 
 <p><%= @manufacturer.name %></p>
 
 <p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to 'Editar', edit_manufacturer_path(@manufacturer) %> </p>
+<!-- nao precisava passar o objeto --(@manufacturer), pq ele ja veio do show, -->
+<!-- mas eh melhor passar p ter certeza q ele vai pegar o objeto correto -->

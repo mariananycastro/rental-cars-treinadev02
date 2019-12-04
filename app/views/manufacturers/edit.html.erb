@@ -1,13 +1,15 @@
 <% if @manufacturer.errors.any? %>
-<p>Voce tem que fazer alguma coisa </p>
     <% @manufacturer.errors.full_messages.each do |message| %>
         <p> <%= message %> </p>
     <% end %>
 <% end %>
 
-<%= form_for @manufacturer do |f| %>
-    <%= f.label :name, 'Nome'%>
-    <%= f.text_field :name %>
-    <%= f.submit 'Enviar' %> 
-<% end %>
 
+
+<%= form_with model: @manufacturer, local:true do |f| %>
+<p> 
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+    <%= f.submit 'Enviar' %>
+<% end %>
+</p>

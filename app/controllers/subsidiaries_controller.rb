@@ -4,7 +4,6 @@ class SubsidiariesController < ApplicationController
     end
 
     def show
-        #byebug
         @subsidiary = Subsidiary.find(params[:id])
     end
 

@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root to: 'home#index'
   resources :manufacturers
-  resources :subsidiaries, only: [:index, :show, :new, :create]
+  resources :subsidiaries, only: [:index, :show, :new, :create, :edit, :update] 
+  #soh falta destroy, se colocar destroy pode tirar o only
   resources :cars, only: [:index, :show, :new, :create]
   resources :car_categories, only: [:index, :new, :create]
 
