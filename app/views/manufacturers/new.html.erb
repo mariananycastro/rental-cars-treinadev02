@@ -1,5 +1,4 @@
 <% if @manufacturer.errors.any? %>
-<p>Voce tem que fazer alguma coisa </p>
     <% @manufacturer.errors.full_messages.each do |message| %>
         <p> <%= message %> </p>
     <% end %>
@@ -10,4 +9,7 @@
     <%= f.text_field :name %>
     <%= f.submit 'Enviar' %> 
 <% end %>
+
+<p> <%= link_to 'Voltar', root_path %> </p>
+
 

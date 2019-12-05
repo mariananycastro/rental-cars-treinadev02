@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   root to: 'home#index'
   resources :manufacturers
-  resources :subsidiaries, only: [:index, :show, :new, :create, :edit, :update] 
+  resources :subsidiaries
   #soh falta destroy, se colocar destroy pode tirar o only
   resources :cars, only: [:index, :show, :new, :create]
   resources :car_categories, only: [:index, :new, :create]
+  resources :car_models, only: [:index, :new, :create, :show]
 
   #resource :home, pq soh vou ter uma  home entao resource e  home no singular
 end

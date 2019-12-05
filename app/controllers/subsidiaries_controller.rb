@@ -12,8 +12,30 @@ class SubsidiariesController < ApplicationController
     end
 
     def create
-        @subsidiary = Subsidiary.create(params.require(:subsidiary).permit(:name, :cnpj, :address))
-        redirect_to @subsidiary
+        @subsidiary = Subsidiary.new(params.require(:subsidiary).permit(:name, :cnpj, :address))
+        if @subsidiary.save
+            flash[:alert] = 'Filial cadastrada com sucesso!'
+            redirect_to @subsidiary
+        else 
+            flash.now[:alert] = 'Você deve corrigir todos os erros para prosseguir'
+            render :new
+        end
+    end
+
+    def edit
+        @subsidiary = Subsidiary.find(params[:id])
+    end
+
+    def update
+        @subsidiary = Subsidiary.find(params[:id])
+
+        if @subsidiary.update(params.require(:subsidiary).permit(:name, :cnpj, :address))
+            flash[:alert] = 'Filial atualizado com sucesso!'
+            redirect_to @subsidiary
+        else
+            flash.now[:alert] = 'Você deve corrigir todos os erros para prosseguir'
+            render :edit
+        end
     end
 
 end

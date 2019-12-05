@@ -1,5 +1,7 @@
 class Manufacturer < ApplicationRecord
     validates :name, presence: true 
-    validates :name, uniqueness: {message: 'Fabricante já cadastrado'}
+    validates :name, uniqueness: true
     # ou presence: {menssage: 'mensagem'}
+
+    has_many :car_models
 end

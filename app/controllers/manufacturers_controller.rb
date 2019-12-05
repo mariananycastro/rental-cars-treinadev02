@@ -25,6 +25,7 @@ class ManufacturersController < ApplicationController
         #ele soh manda dentro de um hash
 
         if @manufacturer.save
+            flash[:alert] = 'Fabricante cadastrado com sucesso!'
             redirect_to @manufacturer
         # posso colocar http.....
         # redirect chama uma action
@@ -49,13 +50,14 @@ class ManufacturersController < ApplicationController
         #byebug
         #no terminal dar um - params
         if @manufacturer.update(params.require(:manufacturer).permit(:name))
-            flash[:notice] = 'Fabricante atualizado com sucesso!'
+            flash[:alert] = 'Fabricante atualizado com sucesso!'
         #ou flash[:alert], ou qualquer outra palavra, mas com os dois modelos padroes
         # eu consigo chamar em outra lugar com :alert ou :notice
         # ele vale sempre para o proximo request, se quiser que seja no mesmo request trocar por
         # flash.now[:alert], por ex com render
             redirect_to @manufacturer
         else
+            flash.now[:alert] = 'Você deve corrigir todos os erros para prossegui'
              render :edit
 
         end

@@ -17,11 +17,5 @@ class CarCategoriesController < ApplicationController
                                                                                  :third_party_insurance))
     end
 
-    def destroy
-        @cars = Car.where(car_category: @car_category.id)
-        @cars.each do |book|
-          car.destroy
-        end
-        @car_category.destroy
-    end
+
 end

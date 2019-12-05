@@ -24,7 +24,7 @@ feature 'Admin edits manufacturer' do
     #manufacturer.valid?
     #manufacurer.errors
 
-    expect(page).to have_content('Você deve preencher todos os campos')
+    expect(page).to have_content('Você deve corrigir todos os erros para prossegui')
   end
   
   scenario 'and_name_must_be_unique' do
@@ -33,7 +33,7 @@ feature 'Admin edits manufacturer' do
     visit new_manufacturer_path
     fill_in 'Nome', with: 'Fiat'
     click_on 'Enviar'
-    expect(page).to have_content('Fabricante já cadastrado')
+    expect(page).to have_content('Você deve corrigir todos os erros para prossegui')
   end
 
   scenario 'and must fill in all fields' do
@@ -45,7 +45,7 @@ feature 'Admin edits manufacturer' do
     click_on 'Editar'
     fill_in 'Nome', with: ''
     click_on 'Enviar'
-    expect(page).to have_content('Você deve preencher todos os campos') 
+    expect(page).to have_content('Você deve corrigir todos os erros para prossegui') 
   end
 
   scenario 'and_name_must_be_unique' do
@@ -58,7 +58,7 @@ feature 'Admin edits manufacturer' do
     click_on 'Editar'
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
-    expect(page).to have_content('Fabricante já cadastrado') 
+    expect(page).to have_content('Você deve corrigir todos os erros para prossegui') 
   end
 
 end

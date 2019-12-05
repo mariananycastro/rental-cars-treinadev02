@@ -1,0 +1,10 @@
+<%= @car_model.year %>
+
+<%= @car_model.manucturer.name %>
+
+
+
+<h1> Modelos cadastrados </h1>
+<% @manufacturer.car_models.each do |cm| %>
+    <%= cm.name %>
+    <% end %>
