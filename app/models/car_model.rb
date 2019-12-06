@@ -1,5 +1,11 @@
 class CarModel < ApplicationRecord
 
+  validates :name, presence: true, case_sensitive: false
+  validates :year, presence: true
+  validates :manufacturer_id, presence: true 
+  validates :fuel_type, presence: true, case_sensitive: false
+  validates :motorization, presence: true 
+  validates :car_category_id, presence: true 
   
   belongs_to :manufacturer
   #rails generate model car_model nome:string year:integer manufacturer:references fuel_type  motorization
