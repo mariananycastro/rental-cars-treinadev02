@@ -34,7 +34,7 @@ feature 'Admin register new car model' do
   end
   
   scenario 'and Update' do
-    CarModel.create(name: 'Gol', year: 2019, :manufacturer_id 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    CarModel.create(name: 'Gol', year: 2019, manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
 
     visit root_path
@@ -47,7 +47,7 @@ feature 'Admin register new car model' do
   end
 
   scenario 'update and must fill in all fields ' do
-    CarModel.create(name: 'Gol', year: 2019, :manufacturer_id 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    CarModel.create(name: 'Gol', year: 2019, manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
 
     visit root_path

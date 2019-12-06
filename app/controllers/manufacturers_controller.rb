@@ -1,4 +1,7 @@
-class ManufacturersController < ApplicationController       
+class ManufacturersController < ApplicationController
+    before_action :authenticate_user!
+    #before-action -- rails, authenticate_model -- devise  
+    #before_actio :function, only: [:show :edit] 
 
     def index
         @manufacturers = Manufacturer.all

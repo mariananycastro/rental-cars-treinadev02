@@ -2,8 +2,13 @@ require 'rails_helper'
 
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
-    Manufacturer.create(name: 'Fiat')
+    #arrange
+    user = User.create!(email: 'test@test.com', password: '123456')
 
+    
+    Manufacturer.create(name: 'Fiat')
+    #act
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Fabricantes'
     click_on 'Fiat'
@@ -11,12 +16,15 @@ feature 'Admin edits manufacturer' do
     click_on 'Editar'
     fill_in 'Nome', with: 'Honda'
     click_on 'Enviar'
-
+    #assert
     expect(page).to have_content('Honda')
     expect(page).to have_content('Fabricante atualizado com sucesso!')
   end
 
   scenario 'And must fill in all fields' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     visit new_manufacturer_path
     fill_in 'Nome', with: ''
     #podia nao ter colocado a linha de cima, pq eu enviaria um formulario vazio
@@ -28,6 +36,9 @@ feature 'Admin edits manufacturer' do
   end
   
   scenario 'and_name_must_be_unique' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     Manufacturer.create(name: 'Fiat')
 
     visit new_manufacturer_path
@@ -37,6 +48,9 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     Manufacturer.create!(name: 'Fiat')
 
     visit root_path
@@ -49,6 +63,9 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and_name_must_be_unique' do
+    user = User.create!(email: 'test@test.com', password: '123456')
+
+    login_as(user, scope: :user)
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
 
