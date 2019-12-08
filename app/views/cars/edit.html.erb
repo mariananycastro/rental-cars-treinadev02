@@ -1,1 +1,28 @@
+<h1> Cadastar Novo Carro </h1>
+
+<p> Formulario </p>
+<%= form_for @car do |f| %>
+    <%= f.label :car_model, 'Modelo:'%>
+    <%= f.collection_select(:car_model_id, @car_models, :id, :car_model_name) %>
+
+    <%= f.label :licence_plate, 'Placa:'%>
+    <%= f.text_field :licence_plate %>
+
+    <%= f.label :color, 'Cor:'%>
+    <%= f.text_field :color %>
+
+    <%= f.label :mileage, 'Kilometragem:'%>
+    <%= f.text_field :mileage %>
+
+    <%= f.label :subsidiary, 'Filial:'%>
+    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name) %>
+   
+    
+    <%= f.submit 'Enviar' %>
+
+    
+<% end %>
+
+<p><%= link_to 'Voltar Home', root_path %></p>
+<p><%= link_to 'Voltar Carros', cars_path %></p>
 

@@ -40,8 +40,6 @@ class CarsController < ApplicationController
 
     def update
         @car = Car.find(params[:id])
-        @car_models = CarModel.all
-        @subsidiaries = Subsidiary.all 
 
         if @car.update(params.require(:car).permit(:name, :car_model_id, :subsidiary_id, :licence_plate, :color, 
                                                     :mileage ))

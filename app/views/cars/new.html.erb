@@ -15,7 +15,7 @@
     <%= f.text_field :mileage %>
 
     <%= f.label :subsidiary, 'Filial:'%>
-    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :subsidiary.name) %>
+    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :name) %>
    
     
     <%= f.submit 'Enviar' %>

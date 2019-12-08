@@ -1,5 +1,5 @@
 class ManufacturersController < ApplicationController
-    before_action :authenticate_user!
+    #before_action :authenticate_user!
     #before_action redirect_to rooth_path, notice:'voce não tem autorizacao' unless current_user.admin
     #ou.. unless currente_user.admin
             # flash[:alert] = 'vc nao tem autorizacao'
@@ -71,5 +71,15 @@ class ManufacturersController < ApplicationController
 
         end
     end
+
+    def destroy
+    @manufacturer = Manufacturer.find(params[:id])
+    @car_models = CarModel.where(manufacturer_id: @manufacturer.id)
+    @car_models.each do |car_model|
+        car_model.destroy
+    end
+    @manufacturer.destroy
+    redirect_to manufacturers_path
+end
 end
 

@@ -3,5 +3,5 @@ class Manufacturer < ApplicationRecord
     validates :name, uniqueness: true
     # ou presence: {menssage: 'mensagem'}
 
-    has_many :car_models
+    has_many :car_models, dependent: :destroy
 end
