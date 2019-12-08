@@ -17,7 +17,7 @@ feature 'Admin register manufacturer' do
   end
 
   scenario 'And must be logged in' do
-    visit new_manudacturer_path
+    visit new_manufacturer_path
 
     expect(current_path).to eq new_user_session_path
   end

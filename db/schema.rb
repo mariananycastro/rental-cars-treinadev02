@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_06_182724) do
+ActiveRecord::Schema.define(version: 2019_12_08_145544) do
 
   create_table "car_categories", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -35,11 +35,15 @@ ActiveRecord::Schema.define(version: 2019_12_06_182724) do
   end
 
   create_table "cars", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "car_category_id"
-    t.index ["car_category_id"], name: "index_cars_on_car_category_id"
+    t.integer "car_model_id"
+    t.integer "subsidiary_id"
+    t.string "licence_plate"
+    t.string "color"
+    t.integer "mileage"
+    t.index ["car_model_id"], name: "index_cars_on_car_model_id"
+    t.index ["subsidiary_id"], name: "index_cars_on_subsidiary_id"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -72,6 +76,7 @@ ActiveRecord::Schema.define(version: 2019_12_06_182724) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

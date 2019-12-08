@@ -7,5 +7,12 @@
 <% end %>
 
 <% @cars.each do |car| %>
-<p>Nome: <%= car.name %> <p>
+    <p>
+    <%= link_to car.car_model_name, car %>               
+    
+    <%= link_to 'Excluir', car_path(car), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
 <% end %>
+
+
+<p><%= link_to 'Voltar', root_path %></p>

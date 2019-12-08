@@ -1,3 +1,11 @@
-<p><%= @car.name %></p>
+<h1> Carro </h1>
+
+<p> Modelo: <%= @car.car_model.name %> <%= @car.car_model.year %></p>
+<p> Filial: <%= @car.subsidiary.name %></p>
+<p> Placa: <%= @car.licence_plate %></p>
+<p> Cor: <%= @car.color %></p>
+<p> Kilometragem: <%= @car.mileage %></p>
+
 
 <p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to 'Editar', edit_car_path(@car) %></p>

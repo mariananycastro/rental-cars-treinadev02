@@ -1,4 +1,4 @@
-<h3> Modelo de Carros </h3>
+<h3> Modelo de Carros Cadastrados </h3>
 
 <p><%= link_to "Cadastrar Novo Modelo de Carro", new_car_model_path %><p>
 
@@ -6,6 +6,22 @@
     <p> Nao tem modelo cadastrado </p>
 <% end %>
 
-<% @car_models.each do |model| %>
-    <p><%= link_to model.name, car_model_path(model) %></p>
+<% @car_models.each do |car| %>
+    <p>
+    <%= link_to car.name, car %> <%= car.year %> <%= car.motorization %> 
+                                     <%= car.car_category.name %> <%= car.fuel_type %>                         
+    </p>
 <% end %>
+
+<% @car_models.each do |car| %>
+    <p>
+    <%= link_to car.car_model_name, car %>                        
+    </p>
+<% end %>
+
+
+<% @car_models.each do |car_model| %>
+    <p><%= link_to car_model.name, car_model_path(car_model) %></p>
+<% end %>
+
+<p><%= link_to 'Voltar', root_path %></p>

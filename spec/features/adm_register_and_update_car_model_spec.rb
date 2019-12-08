@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'Admin register new car model' do
   scenario 'successfully' do
+    CarCategory.create!(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400)
+    Manufacturer.create!(name: 'VW')
 
     visit root_path
     click_on 'Modelo de Carros'
@@ -9,11 +11,12 @@ feature 'Admin register new car model' do
 
     fill_in 'Nome', with: 'Gol'
     fill_in 'Ano', with: '2019'
-    fill_in 'Fabricante:', with: 'VW'
+    have_select 'VW', from: 'Fabricante:'
     fill_in 'Combustivel', with: 'Alcool'
     fill_in 'Motorização', with: '2.0'
-    fill_in 'Categoria', with: 'A'
-
+    have_select 'A', from: 'Categoria:'
+    click_on 'Enviar'
+   
     expect(page).to have_content('Gol')
     expect(page).to have_content('2019')
     expect(page).to have_content('VW')
@@ -22,7 +25,7 @@ feature 'Admin register new car model' do
     expect(page).to have_content('A')
     
 
-    expect(page).to have_content('Modelo Cadastrado com sucesso!')
+    expect(page).to have_content('Modelo registrado com sucesso')
   end
 
   scenario 'And must fill in all fields' do
@@ -34,21 +37,32 @@ feature 'Admin register new car model' do
   end
   
   scenario 'and Update' do
-    CarModel.create(name: 'Gol', year: 2019, manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
+    CarCategory.create(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400)
+    Manufacturer.create(name: 'VW')
 
     visit root_path
     click_on 'Modelo de Carros'
     click_on 'Gol'
     click_on 'Editar'
-    fill_in 'Year:', with: '2020'
+
+    fill_in 'Nome', with: 'Gol'
+    fill_in 'Ano', with: '2019'
+    have_select 'VW', from: 'Fabricante:'
+    fill_in 'Combustivel', with: 'Alcool'
+    fill_in 'Motorização', with: '3.0'
+    have_select 'A', from: 'Categoria:'
     click_on 'Enviar'
+  
     expect(page).to have_content('Modelo atualizada com sucesso!') 
   end
 
   scenario 'update and must fill in all fields ' do
-    CarModel.create(name: 'Gol', year: 2019, manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
+    CarCategory.create(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400)
+    Manufacturer.create(name: 'VW')
 
     visit root_path
     click_on 'Modelo de Carros'

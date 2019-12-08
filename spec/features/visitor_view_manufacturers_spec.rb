@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Visitor view manufacturers' do
   scenario 'successfully' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: 'admin')
 
     login_as(user, scope: :user)
     Manufacturer.create(name: 'Fiat')

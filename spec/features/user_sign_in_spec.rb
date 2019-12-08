@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'User sign in ' do
     scenario 'successfully' do
         user = User.create!(email: 'teste@test.com', password: '123456')
+        
         visit root_path
         click_on 'Entrar'
         fill_in 'Email', with: user.email

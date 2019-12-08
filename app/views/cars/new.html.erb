@@ -1,18 +1,28 @@
 <h1> Cadastar Novo Carro </h1>
 
+<p> Formulario </p>
+<%= form_for @car do |f| %>
+    <%= f.label :car_model, 'Modelo:'%>
+    <%= f.collection_select(:car_model_id, @car_models, :id, :car_model_name) %>
 
-<p> Formulario 1</p>
-<%= form_with(model: @car, class: 'nifty_form', local:true) do |f| %> 
-<!-- class - css -->
-<!-- local - p nao rodar um ajax -->
-    <%= f.label :name, 'Nome:'%>
-    <%= f.text_field :name %>
+    <%= f.label :licence_plate, 'Placa:'%>
+    <%= f.text_field :licence_plate %>
+
+    <%= f.label :color, 'Cor:'%>
+    <%= f.text_field :color %>
+
+    <%= f.label :mileage, 'Kilometragem:'%>
+    <%= f.text_field :mileage %>
+
+    <%= f.label :subsidiary, 'Filial:'%>
+    <%= f.collection_select(:subsidiary_id, @subsidiaries, :id, :subsidiary.name) %>
+   
+    
     <%= f.submit 'Enviar' %>
+
+    
 <% end %>
 
-<p> Formulario 2</p>
-<%= form_with(url: "/cars", method: 'post') do %> 
-    <%= label_tag(:name, "Nome: ") %>
-    <%= text_field_tag(:name) %>
-    <%= submit_tag('Enviar') %>
-<% end %>
+<p><%= link_to 'Voltar Home', root_path %></p>
+<p><%= link_to 'Voltar Carros', cars_path %></p>
+

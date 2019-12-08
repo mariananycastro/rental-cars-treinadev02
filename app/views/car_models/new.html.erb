@@ -2,10 +2,13 @@
 
 <p> Formulario 1</p>
 <%= form_with(model: @car_model, local:true) do |f| %> 
+    <!-- class - css -->
+<!-- local - p nao rodar um ajax -->
+
     <%= f.label :name, 'Nome:'%>
     <%= f.text_field :name %>
 
-    <%= f.label :motorization, 'Motorization:'%>
+    <%= f.label :motorization, 'Motorização:'%>
     <%= f.text_field :motorization %>
 
     <%= f.label :year, 'Ano:'%>
@@ -20,8 +23,10 @@
         <!-- o rails roda um map de acordo com o @manufacturers, se ele não achar é pq o @manufacturers está vazio -->
 
     <%= f.label :car_category_id, 'Categoria:'%>
-    <%= f.collection_select(:car_category_id, @categories, :id, :name) %>
+    <%= f.collection_select(:car_category_id, @car_categories, :id, :name) %>
     
     <%= f.submit 'Enviar' %>
 <% end %>
+
+<p><%= link_to 'Voltar', root_path %></p>
 

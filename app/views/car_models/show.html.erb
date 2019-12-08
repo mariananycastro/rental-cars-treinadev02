@@ -1,10 +1,11 @@
-<%= @car_model.year %>
+<h3> Modelo de Carro </h3>
 
-<%= @car_model.manufacturer.name %>
+<p> Nome: <%= @car_model.name %></p>
+<p> CNPJ: <%= @car_model.year %> </p>
+<p> Filial: <%= @car_model.manufacturer.name %> </p>
+<p> Combustivel: <%= @car_model.fuel_type %> </p>
+<p> Motorização: <%= @car_model.motorization %> </p>
+<p> Categoria: <%= @car_model.car_category.name %> </p>
 
-
-
-<h1> Modelos cadastrados </h1>
-<% @manufacturer.car_models.each do |cm| %>
-    <%= cm.name %>
-    <% end %>
+<p><%= link_to 'Voltar', root_path %></p>
+<p><%= link_to 'Editar', edit_car_model_path(@car_model)%></p>

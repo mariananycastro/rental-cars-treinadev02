@@ -4,9 +4,9 @@ Rails.application.routes.draw do
   resources :manufacturers
   resources :subsidiaries
   #soh falta destroy, se colocar destroy pode tirar o only
-  resources :cars, only: [:index, :show, :new, :create]
+  resources :cars
   resources :car_categories
-  resources :car_models, only: [:index, :new, :create, :show]
+  resources :car_models
 
   #resource :home, pq soh vou ter uma  home entao resource e  home no singular
 end

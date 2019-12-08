@@ -2,6 +2,8 @@ class CarsController < ApplicationController
 
     def index
         @cars = Car.all
+        @car_models = CarModel.all
+        @subsidiaries = Subsidiary.all 
     end
 
     def show
@@ -10,21 +12,53 @@ class CarsController < ApplicationController
 
 
     def new
-        @car = @car_category.cars.new()
+        @car = Car.new
+        @car_models = CarModel.all
+        @subsidiaries = Subsidiary.all 
     end
 
     def create
-        @car = Car.create(params.require(:car).permit(:name, 
-                                                      category: @car_category.name,
-                                                      daily_rate: @car_category.daily_rate,
-                                                      car_insurance: @car_category.daily_rate, 
-                                                      third_party_insurance: @car_category.third_party_insurance))
-        redirect_to @car
+        @car = Car.new(params.require(:car).permit(:name, :car_model_id, :subsidiary_id, :licence_plate, :color, 
+                                                    :mileage ))
+        if @car.save
+            flash[:notice] = 'Modelo registrado com sucesso'
+            redirect_to @car
+        else
+            @car_models = CarModel.all
+            @subsidiaries = Subsidiary.all 
+
+            flash.now[:alert] = 'Você deve corrigir todos os erros para prosseguir'
+            render :new  
+        end
     end
 
-    #private
-    #def params_car
-    #    params.require(:car).permit(:name)
-    #end
+    def edit
+        @car = Car.find(params[:id])
+        @car_models = CarModel.all
+        @subsidiaries = Subsidiary.all 
+    end
+
+    def update
+        @car = Car.find(params[:id])
+        @car_models = CarModel.all
+        @subsidiaries = Subsidiary.all 
+
+        if @car.update(params.require(:car).permit(:name, :car_model_id, :subsidiary_id, :licence_plate, :color, 
+                                                    :mileage ))
+            flash[:alert] = 'Modelo atualizado com sucesso!'
+            redirect_to @car
+        else
+            @car_models = CarModel.all
+            @subsidiaries = Subsidiary.all
+            flash.now[:alert] = 'Você deve corrigir todos os erros para prosseguir'
+            render :edit
+        end
+    end
+
+    def destroy
+        @car = Car.find(params[:id])
+        @car.destroy
+        redirect_to cars_path
+    end
 
 end
