@@ -28,8 +28,8 @@ feature 'User sign in ' do
         click_on 'Log In'
         click_on 'Sair'
 
-    expect(current_path).to eq(root_path)
-    expect(page).to have_content('Signed out successfully.')
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_content('You need to sign in or sign up before continuing.')
     #frase padrao em confi locals devise.en.yml
     expect(page).to have_link('Entrar')
     expect(page).not_to have_link('Sair')

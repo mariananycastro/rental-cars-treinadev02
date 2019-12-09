@@ -2,7 +2,12 @@ require 'rails_helper'
 
 feature 'Admin edits subsidiary' do
     scenario 'Must fill in all fields' do
+        user = User.create!(email: 'test@test.com', password: '123456')
+        
+        login_as(user, role: :admin)
+        
         visit new_subsidiary_path
+        
         click_on 'Enviar'
 
         expect(page).to have_content('Você deve corrigir todos os erros para prosseguir')
@@ -11,6 +16,9 @@ feature 'Admin edits subsidiary' do
     scenario 'And CNPJ should not be equal to another subsidiary' do
         Subsidiary.create(name: 'Unidade 1', cnpj:'000.0000.0000-10000', address: 'Rua A, 123' )
         Subsidiary.create(name: 'Unidade 2', cnpj:'000.0000.0000-10000', address: 'Rua A, 123' )
+        user = User.create!(email: 'test@test.com', password: '123456')
+        
+        login_as(user, role: :admin)
 
         visit new_subsidiary_path
 

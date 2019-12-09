@@ -8,9 +8,9 @@ feature 'Admin edits manufacturer' do
     
     Manufacturer.create(name: 'Fiat')
     #act
-    login_as(user, scope: :user)
+    login_as(user, role: :admin)
     visit root_path
-    click_on 'Fabricantes'
+    click_on 'Fabricantes'  
     click_on 'Fiat'
     #neste item ele vai para a view=show
     click_on 'Editar'
@@ -24,7 +24,7 @@ feature 'Admin edits manufacturer' do
   scenario 'And must fill in all fields' do
     user = User.create!(email: 'test@test.com', password: '123456')
 
-    login_as(user, scope: :user)
+    login_as(user, role: :admin)
     visit new_manufacturer_path
     fill_in 'Nome', with: ''
     #podia nao ter colocado a linha de cima, pq eu enviaria um formulario vazio
@@ -38,7 +38,7 @@ feature 'Admin edits manufacturer' do
   scenario 'and_name_must_be_unique' do
     user = User.create!(email: 'test@test.com', password: '123456')
 
-    login_as(user, scope: :user)
+    login_as(user, role: :admin)
     Manufacturer.create(name: 'Fiat')
 
     visit new_manufacturer_path
@@ -50,7 +50,7 @@ feature 'Admin edits manufacturer' do
   scenario 'and must fill in all fields' do
     user = User.create!(email: 'test@test.com', password: '123456')
 
-    login_as(user, scope: :user)
+    login_as(user, role: :admin)
     Manufacturer.create!(name: 'Fiat')
 
     visit root_path
@@ -65,7 +65,7 @@ feature 'Admin edits manufacturer' do
   scenario 'and_name_must_be_unique' do
     user = User.create!(email: 'test@test.com', password: '123456')
 
-    login_as(user, scope: :user)
+    login_as(user, role: :admin)
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
 

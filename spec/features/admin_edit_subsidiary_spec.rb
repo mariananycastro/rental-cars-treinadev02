@@ -3,6 +3,9 @@ require 'rails_helper'
 feature 'Admin edits subsidiary' do
   scenario 'successfully' do
     Subsidiary.create(name: 'Unidade 1', cnpj:'000.0000.0000-10000', address: 'Rua A, 123' )
+    user = User.create!(email: 'test@test.com', password: '123456')
+   
+    login_as(user, role: :admin)
 
     visit root_path
     click_on 'Filiais'
@@ -21,8 +24,10 @@ feature 'Admin edits subsidiary' do
 
   scenario 'And must fill in all fields' do
     Subsidiary.create(name: 'Unidade 1', cnpj:'000.0000.0000-10000', address: 'Rua A, 123' )
+    user = User.create!(email: 'test@test.com', password: '123456')
     
-
+    login_as(user, role: :admin)
+    
     visit root_path
     click_on 'Filiais'
     click_on 'Unidade 1'
@@ -37,6 +42,9 @@ feature 'Admin edits subsidiary' do
   scenario 'and cnpj should not be equal to another subsidiary' do
     Subsidiary.create(name: 'Unidade 1', cnpj:'000.0000.0000-10000', address: 'Rua A, 123' )
     Subsidiary.create(name: 'Unidade 2', cnpj:'000.0000.0000-20000', address: 'Rua A, 123' )
+    user = User.create!(email: 'test@test.com', password: '123456')
+    
+    login_as(user, role: :admin)
 
     visit root_path
     click_on 'Filiais'

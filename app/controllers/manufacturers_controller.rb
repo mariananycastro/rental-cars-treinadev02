@@ -1,5 +1,5 @@
 class ManufacturersController < ApplicationController
-    #before_action :authenticate_user!
+    before_action :authenticate_user!
     #before_action redirect_to rooth_path, notice:'voce não tem autorizacao' unless current_user.admin
     #ou.. unless currente_user.admin
             # flash[:alert] = 'vc nao tem autorizacao'
@@ -7,7 +7,7 @@ class ManufacturersController < ApplicationController
         #end
 
     #before-action -- rails, authenticate_model -- devise  
-    #before_actio :function, only: [:show :edit] 
+    #before_action :function, only: [:show :edit] 
 
     def index
         @manufacturers = Manufacturer.all
