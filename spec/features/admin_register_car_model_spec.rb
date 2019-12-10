@@ -4,9 +4,9 @@ feature 'Admin register car model' do
     scenario 'Successfully' do
         Manufacturer.create!(name: 'BMW')
         CarCategory.create!(name: 'A', daily_rate: 100, car_insurance: 50, third_party_insurance: 90) 
-        user = User.create!(email: 'test@test.com', password: '123456')
+        user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
         
-        login_as(user, role: :admin)
+        login_as(user)
 
         visit root_path
         click_on 'Modelo de Carros'
@@ -21,7 +21,7 @@ feature 'Admin register car model' do
 
         click_on 'Enviar'
         
-        expect(page).to have_content('Modelo atualizado com sucesso!')
+        expect(page).to have_content('Modelo registrado com sucesso')
         expect(page).to have_content('Onix')
         expect(page).to have_content('2020')
         expect(page).to have_content('1.0')

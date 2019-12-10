@@ -4,9 +4,9 @@ feature 'Admin register new car model' do
   scenario 'successfully' do
     CarCategory.create!(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400)
     Manufacturer.create!(name: 'VW')
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
    
-    login_as(user, role: :admin)
+    login_as(user,scope: :user)
 
     visit root_path
     click_on 'Modelo de Carros'
@@ -32,9 +32,9 @@ feature 'Admin register new car model' do
   end
 
   scenario 'And must fill in all fields' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
     
-    login_as(user, role: :admin)
+    login_as(user, scope: :user)
     
     visit new_car_model_path
     fill_in 'Modelo', with: ''
@@ -46,16 +46,17 @@ feature 'Admin register new car model' do
   scenario 'and Update' do
     Manufacturer.create(name: 'VW')
     CarCategory.create(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400)
-    CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    car_model = CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
     
-    login_as(user, role: :admin)
+    login_as(user, scope: :user)
     
 
     visit root_path
     click_on 'Modelo de Carros'
-    click_on 'Gol 2019 2.0 Alcool A'
+    click_on '#{car_model.name} #{car_model.year} #{car_model.motorization} #{car_model.fuel_type} 
+                #{car_model.car_category.name}'
     click_on 'Editar'
 
     fill_in 'Modelo', with: 'Gol'
@@ -72,15 +73,15 @@ feature 'Admin register new car model' do
   scenario 'update and must fill in all fields ' do
     Manufacturer.create(name: 'VW')
     CarCategory.create(name: 'A', daily_rate: 200, car_insurance: 300, third_party_insurance: 400) 
-    CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
+    car_model = CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                     car_category_id:'A')
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
     
-    login_as(user, role: :admin)
+    login_as(user, scope: :user)
 
     visit root_path
     click_on 'Modelo de Carros'
-    click_on 'Gol 2019 2.0 Alcool A'
+    click_on '#{car_model.name} #{car_model.year} #{car_model.motorization} #{car_model.fuel_type} #{car_model.car_category.name}'
     click_on 'Editar'
     fill_in 'Year:', with: ''
     click_on 'Enviar'

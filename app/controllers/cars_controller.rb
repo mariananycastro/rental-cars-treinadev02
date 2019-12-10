@@ -22,7 +22,7 @@ class CarsController < ApplicationController
         @car = Car.new(params.require(:car).permit(:name, :car_model_id, :subsidiary_id, :licence_plate, :color, 
                                                     :mileage ))
         if @car.save
-            flash[:notice] = 'Modelo registrado com sucesso'
+            flash[:notice] = 'Modelo registrado com sucesso!'
             redirect_to @car
         else
             @car_models = CarModel.all

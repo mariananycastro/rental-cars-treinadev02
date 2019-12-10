@@ -7,15 +7,16 @@ feature 'Admin new register car' do
         CarModel.create(name: 'Gol', year: '2019', manufacturer_id: 'VW', fuel_type: 'Alcool', motorization:'2.0', 
                         car_category_id:'A')
         Subsidiary.create(name: 'Unidade 2', cnpj:'000.0000.0000-20000', address: 'Rua A, 123' )
-        user = User.create!(email: 'test@test.com', password: '123456')
+        user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
         
-        login_as(user, role: :admin)
+        login_as(user)
 
         visit root_path
         click_on 'Carros'
         click_on 'Cadastrar Novo Carro'
                 
-        have_select 'Gol 2019 2.0 Alcool A', from: 'Modelo:'
+        have_select '#{car_model.name} #{car_model.year} #{car_model.motorization} #{car_model.fuel_type} #{car_model.car_category.name}',
+                     from: 'Modelo:'
         have_select 'VW', from: 'Fabricante:'
         have_select 'Unidade 2', from: 'Fabricante:'
         fill_in 'Placa:', with: 'ABD1234'
@@ -24,7 +25,8 @@ feature 'Admin new register car' do
 
         click_on 'Enviar'
         
-        expect(page).to have_content('Gol 2019 2.0 Alcool A')
+        expect(page).to have_content('#{car_model.name} #{car_model.year} #{car_model.motorization} #{car_model.fuel_type} 
+                                    #{car_model.car_category.name}')
         expect(page).to have_content('Unidade 2')
         expect(page).to have_content('ABD1234')
         expect(page).to have_content('Azul')

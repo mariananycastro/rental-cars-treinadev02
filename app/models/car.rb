@@ -4,7 +4,6 @@ class Car < ApplicationRecord
     validates :licence_plate, presence:true, uniqueness:true
     validates :color, presence:true
     validates :mileage, presence:true
-
     belongs_to :car_model
     belongs_to :subsidiary
 

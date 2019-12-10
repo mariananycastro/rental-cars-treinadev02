@@ -9,4 +9,7 @@ class User < ApplicationRecord
   #ganho os metodos
   #user.admin! - cria um admi
   #user.employee? - eh employee
+
+  #admin p teste admin@hotmail.com 123456
+  #employee mari@hotmail.com  123456
 end

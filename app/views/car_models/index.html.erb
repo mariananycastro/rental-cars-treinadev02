@@ -6,12 +6,15 @@
     <p> Nao tem modelo cadastrado </p>
 <% end %>
 
+
 <% @car_models.each do |car| %>
     <p>
     <%= link_to car.name, car %> <%= car.year %> <%= car.motorization %> 
                                      <%= car.car_category.name %> <%= car.fuel_type %>                         
     </p>
 <% end %>
+
+
 
 <% @car_models.each do |car| %>
     <p>

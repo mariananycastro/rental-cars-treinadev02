@@ -1,6 +1,8 @@
 class ManufacturersController < ApplicationController
     before_action :authenticate_user!
-    #before_action redirect_to rooth_path, notice:'voce não tem autorizacao' unless current_user.admin
+    before_action :authorize_admin
+    before_action :set_manufacturer, only: [:show, :edit, :update]
+ 
     #ou.. unless currente_user.admin
             # flash[:alert] = 'vc nao tem autorizacao'
             # redirect_to rooth_path
@@ -14,8 +16,7 @@ class ManufacturersController < ApplicationController
     end
 
     def show
-        @manufacturer = Manufacturer.find(params[:id])
-        
+        set_manufacturer
     end
 
     def new
@@ -34,8 +35,7 @@ class ManufacturersController < ApplicationController
         #ele soh manda dentro de um hash
 
         if @manufacturer.save
-            flash[:alert] = 'Fabricante cadastrado com sucesso!'
-            redirect_to @manufacturer
+            redirect_to @manufacturer, notice: 'Fabricante cadastrado com sucesso!' 
         # posso colocar http.....
         # redirect chama uma action
         #render :new (simbolo) ou 'new' ou passar todo o caminho da view /home#index
@@ -51,11 +51,11 @@ class ManufacturersController < ApplicationController
     end
 
     def edit
-        @manufacturer = Manufacturer.find(params[:id])
+        set_manufacturer
     end
 
     def update
-        @manufacturer = Manufacturer.find(params[:id])
+        set_manufacturer
         #byebug
         #no terminal dar um - params
         if @manufacturer.update(params.require(:manufacturer).permit(:name))
@@ -80,6 +80,16 @@ class ManufacturersController < ApplicationController
     end
     @manufacturer.destroy
     redirect_to manufacturers_path
-end
+    end
+
+    private
+
+    def set_manufacturer
+        @manufacturer = Manufacturer.find(params[:id])
+    end
+
+    def authorize_admin
+        redirect_to root_path, notice:'voce não tem autorizacao' unless current_user.admin?
+    end
 end
 

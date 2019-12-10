@@ -3,9 +3,9 @@ require 'rails_helper'
 feature 'Admin view subsidiaries' do
     scenario 'successfully' do
         Subsidiary.create!(name: 'Filial1', cnpj: '00.000.000/0001-00', address: 'Rua: A, 123')
-        user = User.create!(email: 'test@test.com', password: '123456')
+        user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
         
-        login_as(user, role: :admin)
+        login_as(user)
 
         visit root_path
         click_on 'Filiais'

@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Admin register manufacturer' do
   scenario 'successfully' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
-    login_as(user, role: :admin)
+    login_as(user)
 
     visit root_path
     click_on 'Fabricantes'

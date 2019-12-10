@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Admin edits manufacturer' do
   scenario 'successfully' do
     #arrange
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
     
     Manufacturer.create(name: 'Fiat')
@@ -22,9 +22,9 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'And must fill in all fields' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
-    login_as(user, role: :admin)
+    login_as(user)
     visit new_manufacturer_path
     fill_in 'Nome', with: ''
     #podia nao ter colocado a linha de cima, pq eu enviaria um formulario vazio
@@ -36,9 +36,9 @@ feature 'Admin edits manufacturer' do
   end
   
   scenario 'and_name_must_be_unique' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
-    login_as(user, role: :admin)
+    login_as(user)
     Manufacturer.create(name: 'Fiat')
 
     visit new_manufacturer_path
@@ -48,9 +48,9 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and must fill in all fields' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
-    login_as(user, role: :admin)
+    login_as(user)
     Manufacturer.create!(name: 'Fiat')
 
     visit root_path
@@ -63,9 +63,9 @@ feature 'Admin edits manufacturer' do
   end
 
   scenario 'and_name_must_be_unique' do
-    user = User.create!(email: 'test@test.com', password: '123456')
+    user = User.create!(email: 'test@test.com', password: '123456', role: :admin)
 
-    login_as(user, role: :admin)
+    login_as(user)
     Manufacturer.create(name: 'Fiat')
     Manufacturer.create(name: 'Honda')
 

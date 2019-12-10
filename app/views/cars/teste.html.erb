@@ -1,6 +1,12 @@
-<% @manufacturers.car_model.each do |car_model| %> 
-        <p>
-        <%= link_to car_model.name %> <%= car_model.year %> <%= car_model.motorization %> 
-                                         <%= car_model.car_category.name %> <%= car_model.fuel_type %>
+<% @manufacturers.each do |manufacturer| %>
+   <% manufacturer.car_models.each do |car_model| %>
+        <p>
+        <%= link_to car_model.name %> 
         </p>
     <% end %>
+
+#    fiat = Manufacturer.find_by(name: 'Fiat')
+#volks = Manufacturer.find_by(name: 'Volks')
+#CarModel.where(manufacturer: [fiat, volks])
+
+

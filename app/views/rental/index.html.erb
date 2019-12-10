@@ -1,0 +1,13 @@
+<p><%= link_to "Agendar Locação", new_rental_path %><p>
+
+<%= form_with url: search_rentals_path, local: true, method: :get do %>
+    <%= label_tag(:q, 'Código') %>
+    <%= text_field_tag :q %>
+    <%= submit_tag 'Buscar' %>
+<% end %>
+
+#<!-- busca é um get -->
+#<!-- busca sem model, nao tem |f| -->
+#<!-- criar uma rota p esta nova view -->
+
+
